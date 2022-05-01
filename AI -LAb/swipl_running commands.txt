@@ -1,4 +1,0 @@
-Running Prolog in VSCode
-
-swipl - to get into prolog terminal
-consult("filename.pl"). - to get hold of file and run commands
