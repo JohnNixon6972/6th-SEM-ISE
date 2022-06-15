@@ -3,7 +3,7 @@ import 'dart:html';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:aiwebsite/Screens/mainFunction.dart';
+import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:aiwebsite/constants.dart';
 import 'package:aiwebsite/main.dart';
 
@@ -58,6 +58,8 @@ class _homeScreenState extends State<homeScreen> {
   }
 
   final Shader linerGradient = const LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.topLeft,
     colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
   ).createShader(
     Rect.fromPoints(Offset(0, 500), Offset(1000, 500)),
@@ -69,16 +71,25 @@ class _homeScreenState extends State<homeScreen> {
       appBar: AppBar(
         elevation: 15,
         toolbarHeight: 50,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.topLeft,
+                colors: <Color>[kColor1, kColor4]),
+          ),
+        ),
         title: Center(
           child: Text(
             "Image Colorization",
             style: GoogleFonts.cantataOne(
               textStyle: const TextStyle(
-                  color: kColor2, fontSize: 30, fontWeight: FontWeight.bold),
+                  color: Colors.grey,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),
-        backgroundColor: kColor3,
       ),
       body: Center(
         child: SafeArea(
@@ -99,6 +110,9 @@ class _homeScreenState extends State<homeScreen> {
                 child: Row(
                   children: [
                     Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: kColor4),
+                      ),
                       height: MediaQuery.of(context).size.height,
                       width: (3 * MediaQuery.of(context).size.width) / 4,
                       child: Column(
@@ -123,7 +137,46 @@ class _homeScreenState extends State<homeScreen> {
                             height: 30,
                           ),
                           Text(
-                            "DESCRIPTION cnkjsdnv ncdkn dsjkcz, ",
+                            "Image Caption Generation:",
+                            style: GoogleFonts.cantataOne(
+                              textStyle: TextStyle(
+                                // color: kColor2,
+                                fontFamily: 'Roboto-Thin',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                foreground: Paint()..shader = linerGradient,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "Image caption generator is a process of \nrecognizing the context of an image and \nannotating it with relevant captions using \ndeep learning, and computer vision.",
+                            style: GoogleFonts.cantataOne(
+                              textStyle: TextStyle(
+                                // color: kColor2,
+
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                foreground: Paint()..shader = linerGradient,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Image Colorization:",
+                            style: GoogleFonts.roboto(
+                              textStyle: TextStyle(
+                                // color: kColor2,
+
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                foreground: Paint()..shader = linerGradient,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "Image colorization is one technique to add\nstyle to a photograph or apply a\ncombination of styles. Additionally, image\ncolorization can add color to photographs\nthat were originally taken in black and\nwhite.",
                             style: GoogleFonts.cantataOne(
                               textStyle: TextStyle(
                                 // color: kColor2,
@@ -132,7 +185,7 @@ class _homeScreenState extends State<homeScreen> {
                                 foreground: Paint()..shader = linerGradient,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -203,7 +256,7 @@ class _homeScreenState extends State<homeScreen> {
                                 ElevatedButton(
                                   onPressed: () async {
                                     Navigator.pushNamed(
-                                        context, mainAiFunction.id);
+                                        context, outputScreen.id);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: kColor2,

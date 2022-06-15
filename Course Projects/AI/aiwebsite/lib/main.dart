@@ -1,5 +1,5 @@
 import 'package:aiwebsite/Screens/homescreen.dart';
-import 'package:aiwebsite/Screens/mainFunction.dart';
+import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class _ImageColorizationState extends State<ImageColorization> {
       initialRoute: homeScreen.id,
       routes: {
         homeScreen.id: (context) => homeScreen(),
-        mainAiFunction.id:(context) => mainAiFunction(),
+        outputScreen.id:(context) => outputScreen(),
       },
     );
   }

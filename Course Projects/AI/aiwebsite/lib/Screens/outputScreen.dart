@@ -12,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:image_picker/image_picker.dart';
 
-class mainAiFunction extends StatefulWidget {
-  static const String id = 'mainAiFunction';
+class outputScreen extends StatefulWidget {
+  static const String id = 'outputScreen';
 
   @override
-  State<mainAiFunction> createState() => _mainAiFunctionState();
+  State<outputScreen> createState() => _outputScreenState();
 }
 
-class _mainAiFunctionState extends State<mainAiFunction> {
+class _outputScreenState extends State<outputScreen> {
   final Shader linerGradient = const LinearGradient(
     colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
   ).createShader(
@@ -35,8 +35,8 @@ class _mainAiFunctionState extends State<mainAiFunction> {
           child: Text(
             "Image Colorization",
             style: GoogleFonts.cantataOne(
-              textStyle: TextStyle(
-                  color: kColor2, fontSize: 30, fontWeight: FontWeight.bold),
+              textStyle: const TextStyle(
+                  color: kColor1, fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
         ),
