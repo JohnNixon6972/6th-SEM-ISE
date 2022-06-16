@@ -31,22 +31,31 @@ class _outputScreenState extends State<outputScreen> {
       appBar: AppBar(
         elevation: 15,
         toolbarHeight: 50,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.topLeft,
+                colors: <Color>[kColor1, kColor4]),
+          ),
+        ),
         title: Center(
           child: Text(
             "Image Colorization",
             style: GoogleFonts.cantataOne(
               textStyle: const TextStyle(
-                  color: kColor1, fontSize: 30, fontWeight: FontWeight.bold),
+                  color: Colors.grey,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),
-        backgroundColor: kColor3,
       ),
       body: SafeArea(
         child: Stack(
           children: [
             Opacity(
-              opacity: 1,
+              opacity: 0.4,
               child: Center(
                 child: Image.asset(
                   'images/backgroundimage3.webp',
@@ -97,9 +106,13 @@ class _outputScreenState extends State<outputScreen> {
                             width: ((MediaQuery.of(context).size.width)) / 3,
                             decoration: BoxDecoration(
                               border: Border.all(color: kColor1),
-                              
                             ),
-                            child:inputedImage!=null ? Image(image: inputedImage!.image,fit: BoxFit.cover,):Center(),
+                            child: inputedImage != null
+                                ? Image(
+                                    image: inputedImage!.image,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Center(),
                           ),
                         ],
                       ),

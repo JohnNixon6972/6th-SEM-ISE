@@ -15,6 +15,7 @@ class _ImageColorizationState extends State<ImageColorization> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       initialRoute: homeScreen.id,
       routes: {
