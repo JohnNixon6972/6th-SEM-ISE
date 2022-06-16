@@ -97,7 +97,9 @@ class _outputScreenState extends State<outputScreen> {
                             width: ((MediaQuery.of(context).size.width)) / 3,
                             decoration: BoxDecoration(
                               border: Border.all(color: kColor1),
+                              
                             ),
+                            child:inputedImage!=null ? Image(image: inputedImage!.image,fit: BoxFit.cover,):Center(),
                           ),
                         ],
                       ),

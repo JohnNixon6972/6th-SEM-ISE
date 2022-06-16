@@ -1,16 +1,14 @@
-import 'dart:convert';
-import 'dart:html';
-import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:image_picker_web/image_picker_web.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:aiwebsite/constants.dart';
-import 'package:aiwebsite/main.dart';
 
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:image_picker/image_picker.dart';
+
+late Image? inputedImage = null;
 
 class homeScreen extends StatefulWidget {
   static const String id = 'homeScreen';
@@ -25,36 +23,9 @@ Image img = Image.asset('uploadImage.png');
 
 class _homeScreenState extends State<homeScreen> {
   late Uint8List uploadedImage;
-
   startFilePicker() async {
-    FileUploadInputElement uploadInput = FileUploadInputElement();
-    uploadInput.click();
-    uploadInput.onChange.listen((e) {
-      // read file content as dataURL
-      final files = uploadInput.files;
-      if (files!.length == 1) {
-        final file = files[0];
-        FileReader reader = FileReader();
-        reader.onLoadEnd.listen((e) {
-          setState(() {
-            uploadedImage = reader.result as Uint8List;
-            img = uploadedImage as Image;
-          });
-        });
-        reader.onError.listen((fileEvent) {
-          setState(() {
-            var option1Text = "Some Error occured while reading the file";
-            img = uploadedImage as Image;
-          });
-        });
-
-        setState(() {
-          var _base64 = "/9j/4AAQSkZJRg...";
-          uploadedImage = base64Decode(_base64);
-          img = Image.memory(uploadedImage);
-        });
-      }
-    });
+    inputedImage = await ImagePickerWeb.getImageAsWidget();
+    setState(() {});
   }
 
   final Shader linerGradient = const LinearGradient(
@@ -234,10 +205,15 @@ class _homeScreenState extends State<homeScreen> {
                                 ),
                                 Container(
                                   child: Opacity(
-                                      opacity: 0.3,
-                                      child: Image.asset(
-                                        'images/uploadImage.png',
-                                      )),
+                                      opacity: inputedImage == null ? 0.3 : 1.0,
+                                      child: inputedImage == null
+                                          ? Image.asset(
+                                              'images/uploadImage.png',
+                                            )
+                                          : Image(
+                                              image: inputedImage!.image,
+                                              fit: BoxFit.cover,
+                                            )),
                                   height: 3 *
                                       ((MediaQuery.of(context).size.width) /
                                           4) /
