@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:aiwebsite/constants.dart';
 import 'package:aiwebsite/main.dart';
+import "package:hovering/hovering.dart";
 
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -115,78 +116,110 @@ class _homeScreenState extends State<homeScreen> {
                       ),
                       height: MediaQuery.of(context).size.height,
                       width: (3 * MediaQuery.of(context).size.width) / 4,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          Text(
-                            "Let's get started !",
-                            style: GoogleFonts.cantataOne(
-                              textStyle: TextStyle(
-                                // color: kColor2,
-                                fontSize: 50,
-                                fontWeight: FontWeight.bold,
-                                foreground: Paint()..shader = linerGradient,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            Text(
+                              "Let's get started !",
+                              style: GoogleFonts.cantataOne(
+                                textStyle: TextStyle(
+                                  // color: kColor2,
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
+                                  foreground: Paint()..shader = linerGradient,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            "Image Caption Generation:",
-                            style: GoogleFonts.cantataOne(
-                              textStyle: TextStyle(
-                                // color: kColor2,
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Text(
+                              "Image Caption Generation:",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                decorationColor: kColor2,
                                 fontFamily: 'Roboto-Thin',
-                                fontSize: 20,
+                                fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 foreground: Paint()..shader = linerGradient,
                               ),
                             ),
-                          ),
-                          Text(
-                            "Image caption generator is a process of \nrecognizing the context of an image and \nannotating it with relevant captions using \ndeep learning, and computer vision.",
-                            style: GoogleFonts.cantataOne(
-                              textStyle: TextStyle(
-                                // color: kColor2,
-
-                                fontSize: 20,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 100, vertical: 5),
+                              child: Text(
+                                "Image caption generator is a process of recognizing the context of an image and annotating it with relevant captions using deep learning, and computer vision.",
+                                style: GoogleFonts.cantataOne(
+                                  textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    foreground: Paint()..shader = linerGradient,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "Image Colorization:",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                decorationColor: kColor2,
+                                fontSize: 22,
+                                fontFamily: "Fascinate-Regular",
                                 fontWeight: FontWeight.bold,
                                 foreground: Paint()..shader = linerGradient,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "Image Colorization:",
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                                // color: kColor2,
-
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                foreground: Paint()..shader = linerGradient,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 100, vertical: 5),
+                              child: Text(
+                                "Image colorization is one technique to add style to a photograph or apply a combination of styles. Additionally, image colorization can add color to photographs that were originally taken in black and white.",
+                                style: GoogleFonts.cantataOne(
+                                  textStyle: TextStyle(
+                                    // color: kColor2,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    foreground: Paint()..shader = linerGradient,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            "Image colorization is one technique to add\nstyle to a photograph or apply a\ncombination of styles. Additionally, image\ncolorization can add color to photographs\nthat were originally taken in black and\nwhite.",
-                            style: GoogleFonts.cantataOne(
-                              textStyle: TextStyle(
-                                // color: kColor2,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                foreground: Paint()..shader = linerGradient,
-                              ),
-                            ),
-                          ),
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    animatedImages(
+                                      imgUrl: "images/john.jpg",
+                                    ),
+                                    animatedImages(
+                                      imgUrl: "images/john1.jpg",
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    animatedImages(
+                                      imgUrl: "images/john2.jpg",
+                                    ),
+                                    animatedImages(
+                                      imgUrl:"images/john3.jpg",
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     const Spacer(),
@@ -201,11 +234,13 @@ class _homeScreenState extends State<homeScreen> {
                             border: Border.all(color: kColor4),
                           ),
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 200,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 200,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       startFilePicker();
@@ -218,52 +253,55 @@ class _homeScreenState extends State<homeScreen> {
                                       ),
                                     ),
                                     child: Center(
-                                      child: Text(
-                                        'Upload an Image',
-                                        style: GoogleFonts.cantataOne(
-                                          textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Upload an Image',
+                                          style: GoogleFonts.cantataOne(
+                                            textStyle: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 20,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                child: Opacity(
+                                    opacity: 0.3,
+                                    child: Image.asset(
+                                      'images/uploadImage.png',
+                                    )),
+                                height: 3 *
+                                    ((MediaQuery.of(context).size.width) / 4) /
+                                    4,
+                                width: 3 *
+                                    ((MediaQuery.of(context).size.width) / 4) /
+                                    4,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: kColor1),
                                 ),
-                                Container(
-                                  child: Opacity(
-                                      opacity: 0.3,
-                                      child: Image.asset(
-                                        'images/uploadImage.png',
-                                      )),
-                                  height: 3 *
-                                      ((MediaQuery.of(context).size.width) /
-                                          4) /
-                                      4,
-                                  width: 3 *
-                                      ((MediaQuery.of(context).size.width) /
-                                          4) /
-                                      4,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: kColor1),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  Navigator.pushNamed(context, outputScreen.id);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: kColor2,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    Navigator.pushNamed(
-                                        context, outputScreen.id);
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: kColor2,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     'Next',
                                     style: GoogleFonts.cantataOne(
@@ -272,7 +310,9 @@ class _homeScreenState extends State<homeScreen> {
                                     ),
                                   ),
                                 ),
-                              ]),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     )
@@ -280,6 +320,49 @@ class _homeScreenState extends State<homeScreen> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class animatedImages extends StatelessWidget {
+  final String imgUrl;
+  animatedImages({required this.imgUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: HoverWidget(
+        hoverChild: Material(
+          elevation: 5,
+          shadowColor: kColor1,
+          borderRadius: BorderRadius.circular(15),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imgUrl,
+              height: 110,
+              width: 110,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        onHover: (event) {},
+        child: Material(
+          elevation: 15,
+          shadowColor: kColor1,
+          borderRadius: BorderRadius.circular(15),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imgUrl,
+              height: 100,
+              width: 100,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
