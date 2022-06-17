@@ -1,3 +1,4 @@
+import 'package:aiwebsite/Screens/aboutsUs.dart';
 import 'package:aiwebsite/Screens/homescreen.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class _ImageColorizationState extends State<ImageColorization> {
       routes: {
         homeScreen.id: (context) => homeScreen(),
         outputScreen.id:(context) => outputScreen(),
+        aboutUs.id:(context) => aboutUs(),
       },
     );
   }

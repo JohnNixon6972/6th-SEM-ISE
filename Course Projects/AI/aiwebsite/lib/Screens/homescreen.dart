@@ -3,12 +3,12 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:aiwebsite/constants.dart';
 import 'package:aiwebsite/main.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:hovering/hovering.dart";
-
-// import 'package:file_picker/file_picker.dart';
+import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 
 late Image? inputedImage = null;
 
@@ -40,10 +40,35 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    PageController page = PageController();
+    List<SideMenuItem> items = [
+      SideMenuItem(
+        priority: 0,
+        title: 'Abouts Us',
+        onTap: () {
+          Navigator.pushNamed(context, outputScreen.id);
+        },
+        icon: Icon(Icons.people),
+      ),
+      SideMenuItem(
+        priority: 1,
+        title: 'Home',
+        onTap: () => {Navigator.pushNamed(context, outputScreen.id)},
+        icon: Icon(Icons.home),
+      ),
+      SideMenuItem(
+        priority: 2,
+        title: 'Exit',
+        onTap: () {
+          Navigator.pushNamed(context, outputScreen.id);
+        },
+        icon: Icon(Icons.exit_to_app),
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         elevation: 15,
-        toolbarHeight: 50,
+        toolbarHeight: 60,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -52,16 +77,32 @@ class _homeScreenState extends State<homeScreen> {
                 colors: <Color>[kColor1, kColor4]),
           ),
         ),
-        title: Center(
-          child: Text(
-            "Image Colorization",
-            style: GoogleFonts.cantataOne(
-              textStyle: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const SizedBox(width: 20.0, height: 100.0),
+            const GlowText(
+              'Image',
+              style: TextStyle(fontSize: 43.0),
             ),
-          ),
+            const SizedBox(width: 20.0, height: 100.0),
+            DefaultTextStyle(
+              style: const TextStyle(
+                  fontSize: 40.0,
+                  fontFamily: 'Horizon',
+                  color: Colors.blueGrey),
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  RotateAnimatedText('CAPTIONING'),
+                  RotateAnimatedText('COLOURIZER'),
+                ],
+                totalRepeatCount: 9999,
+                onTap: () {
+                  print("Tap Event");
+                },
+              ),
+            ),
+          ],
         ),
       ),
       body: Center(
@@ -86,8 +127,52 @@ class _homeScreenState extends State<homeScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(color: kColor4),
                       ),
+                      height: MediaQuery.of(context).size.height - 60,
+                      width: (MediaQuery.of(context).size.width) / 5,
+                      child: SideMenu(
+                        title: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: GlowText(
+                            "Menu",
+                            style: GoogleFonts.cantataOne(
+                              textStyle: TextStyle(
+                                // color: kColor2,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w800,
+                                foreground: Paint()..shader = linerGradient,
+                              ),
+                            ),
+                          ),
+                        ),
+                        controller: page,
+                        onDisplayModeChanged: (mode) {
+                          print(mode);
+                        },
+                        items: items,
+                        style: SideMenuStyle(
+                          displayMode: SideMenuDisplayMode.auto,
+
+                          openSideMenuWidth: 200,
+                          compactSideMenuWidth: 40,
+                          hoverColor: kColor3,
+                          selectedColor: kColor1,
+                          selectedIconColor: Colors.white,
+                          unselectedIconColor: Colors.black54,
+                          // backgroundColor: kColor1,
+                          selectedTitleTextStyle:
+                              TextStyle(color: Colors.white),
+                          unselectedTitleTextStyle:
+                              TextStyle(color: Colors.black54),
+                          iconSize: 20,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: kColor4),
+                      ),
                       height: MediaQuery.of(context).size.height,
-                      width: (3 * MediaQuery.of(context).size.width) / 4,
+                      width: (3 * MediaQuery.of(context).size.width) / 5,
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +181,7 @@ class _homeScreenState extends State<homeScreen> {
                             const SizedBox(
                               height: 50,
                             ),
-                            Text(
+                            GlowText(
                               "Let's get started !",
                               style: GoogleFonts.cantataOne(
                                 textStyle: TextStyle(
@@ -172,7 +257,7 @@ class _homeScreenState extends State<homeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 animatedImages(
-                                  imgUrl: "images/john.jpg",
+                                  imgUrl: "images/backgroundimage2.jpg",
                                   context: context,
                                 ),
                                 animatedImages(
@@ -184,7 +269,7 @@ class _homeScreenState extends State<homeScreen> {
                                   context: context,
                                 ),
                                 animatedImages(
-                                  imgUrl: "images/john3.jpg",
+                                  imgUrl: "images/backgroundimage1.jpg",
                                   context: context,
                                 ),
                               ],
@@ -199,8 +284,8 @@ class _homeScreenState extends State<homeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height - 50,
-                          width: (MediaQuery.of(context).size.width) / 4,
+                          height: MediaQuery.of(context).size.height - 60,
+                          width: (MediaQuery.of(context).size.width) / 5,
                           decoration: BoxDecoration(
                             border: Border.all(color: kColor4),
                           ),
@@ -320,7 +405,7 @@ class animatedImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double imageSize = (3 * ((MediaQuery.of(context).size.width) / 4)) / 5;
+    double imageSize = (3 * ((MediaQuery.of(context).size.width) / 5)) / 5;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: HoverWidget(
