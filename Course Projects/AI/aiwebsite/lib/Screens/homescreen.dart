@@ -89,8 +89,9 @@ class _homeScreenState extends State<homeScreen> {
             DefaultTextStyle(
               style: const TextStyle(
                   fontSize: 40.0,
+                  fontWeight: FontWeight.w600,
                   fontFamily: 'Horizon',
-                  color: Colors.blueGrey),
+                  color: Colors.pinkAccent),
               child: AnimatedTextKit(
                 animatedTexts: [
                   RotateAnimatedText('CAPTIONING'),
@@ -110,10 +111,10 @@ class _homeScreenState extends State<homeScreen> {
           child: Stack(
             children: [
               Opacity(
-                opacity: 0.4,
+                opacity: 1,
                 child: Center(
                   child: Image.asset(
-                    'images/backgroundimage3.webp',
+                    'images/5238994.jpg',
                     fit: BoxFit.cover,
                     height: double.infinity,
                     width: double.infinity,
@@ -134,13 +135,14 @@ class _homeScreenState extends State<homeScreen> {
                           padding: const EdgeInsets.all(10.0),
                           child: GlowText(
                             "Menu",
+                            glowColor: Colors.black,
                             style: GoogleFonts.cantataOne(
                               textStyle: TextStyle(
-                                // color: kColor2,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w800,
-                                foreground: Paint()..shader = linerGradient,
-                              ),
+                                  // color: kColor2,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600,
+                                  // foreground: Paint()..shader = linerGradient,
+                                  color: Colors.pinkAccent),
                             ),
                           ),
                         ),
@@ -159,11 +161,13 @@ class _homeScreenState extends State<homeScreen> {
                           selectedIconColor: Colors.white,
                           unselectedIconColor: Colors.black54,
                           // backgroundColor: kColor1,
-                          selectedTitleTextStyle:
-                              TextStyle(color: Colors.white),
+                          selectedTitleTextStyle: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
                           unselectedTitleTextStyle:
-                              TextStyle(color: Colors.black54),
-                          iconSize: 20,
+                              TextStyle(color: Colors.purpleAccent),
+                          iconSize: 25,
                         ),
                       ),
                     ),
@@ -176,34 +180,41 @@ class _homeScreenState extends State<homeScreen> {
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(
                               height: 50,
                             ),
-                            GlowText(
-                              "Let's get started !",
-                              style: GoogleFonts.cantataOne(
-                                textStyle: TextStyle(
-                                  // color: kColor2,
-                                  fontSize: 50,
-                                  fontWeight: FontWeight.bold,
-                                  foreground: Paint()..shader = linerGradient,
+                            Center(
+                              child: GlowText(
+                                "Let's get started !",
+                                // glowColor: Colors.black,
+                                style: GoogleFonts.cantataOne(
+                                  textStyle: TextStyle(
+                                    // color: kColor2,
+                                    color: Colors.indigoAccent,
+                                    fontSize: 50,
+                                    fontWeight: FontWeight.bold,
+                                    // foreground: Paint()..shader = linerGradient,
+                                  ),
                                 ),
                               ),
                             ),
                             const SizedBox(
                               height: 30,
                             ),
-                            Text(
-                              "Image Caption Generation:",
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                decorationColor: kColor2,
-                                fontFamily: 'Roboto-Thin',
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                foreground: Paint()..shader = linerGradient,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 100.0),
+                              child: Text(
+                                "Image Caption Generation:",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: kColor2,
+                                    fontFamily: 'Roboto-Thin',
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.purpleAccent),
                               ),
                             ),
                             Padding(
@@ -213,25 +224,27 @@ class _homeScreenState extends State<homeScreen> {
                                 "Image caption generator is a process of recognizing the context of an image and annotating it with relevant captions using deep learning, and computer vision.",
                                 style: GoogleFonts.cantataOne(
                                   textStyle: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    foreground: Paint()..shader = linerGradient,
-                                  ),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.deepPurpleAccent),
                                 ),
                               ),
                             ),
                             const SizedBox(
                               height: 20,
                             ),
-                            Text(
-                              "Image Colorization:",
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                decorationColor: kColor2,
-                                fontSize: 25,
-                                fontFamily: "Fascinate-Regular",
-                                fontWeight: FontWeight.bold,
-                                foreground: Paint()..shader = linerGradient,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 100.0),
+                              child: Text(
+                                "Image Colorization:",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: kColor2,
+                                    fontSize: 25,
+                                    fontFamily: "Fascinate-Regular",
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.purpleAccent),
                               ),
                             ),
                             Padding(
@@ -244,7 +257,7 @@ class _homeScreenState extends State<homeScreen> {
                                     // color: kColor2,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    foreground: Paint()..shader = linerGradient,
+                                    color: Colors.deepPurpleAccent,
                                   ),
                                 ),
                               ),
@@ -303,7 +316,7 @@ class _homeScreenState extends State<homeScreen> {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       alignment: Alignment.center,
-                                      primary: kColor1,
+                                      primary: Colors.deepPurpleAccent,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
@@ -311,7 +324,7 @@ class _homeScreenState extends State<homeScreen> {
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text(
+                                        child: GlowText(
                                           'Upload an Image',
                                           style: GoogleFonts.cantataOne(
                                             textStyle: const TextStyle(
@@ -359,7 +372,7 @@ class _homeScreenState extends State<homeScreen> {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       alignment: Alignment.center,
-                                      primary: kColor1,
+                                      primary: Colors.deepPurpleAccent,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
@@ -410,31 +423,34 @@ class animatedImages extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: HoverWidget(
         hoverChild: Material(
-          elevation: 5,
-          shadowColor: kColor1,
+          elevation: 10,
+          shadowColor: Colors.purpleAccent,
           borderRadius: BorderRadius.circular(15),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.asset(
-              imgUrl,
-              height: imageSize + 10,
-              width: imageSize + 10,
-              fit: BoxFit.cover,
+          child: GlowContainer(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                imgUrl,
+                height: imageSize + 10,
+                width: imageSize + 10,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
         onHover: (event) {},
         child: Material(
           elevation: 15,
-          shadowColor: kColor3,
           borderRadius: BorderRadius.circular(15),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.asset(
-              imgUrl,
-              height: imageSize,
-              width: imageSize,
-              fit: BoxFit.cover,
+          child: GlowContainer(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                imgUrl,
+                height: imageSize,
+                width: imageSize,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

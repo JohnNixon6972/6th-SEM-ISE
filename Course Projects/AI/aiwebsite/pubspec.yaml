@@ -21,6 +21,7 @@ dependencies:
   hovering: ^1.0.4
   animated_text_kit: ^4.2.1
   flutter_glow: ^0.2.0
+  avatar_glow: ^2.0.2
 
 dev_dependencies:
   flutter_test:
