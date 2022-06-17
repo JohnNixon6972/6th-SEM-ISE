@@ -99,7 +99,7 @@ def beam_search(image, beam_index = 3):
     return final_caption
 
 
-model = load_model('image-caption-30k-2.73.h5')
+model = load_model('new-model-1.h5')
 
 #initialise GUI
 top=tk.Tk()
@@ -121,4 +121,4 @@ def classify(file_path):
     print(beam_5)
     
 
-classify('./images/test.jpeg')
+classify('./images/test2.jpeg')
