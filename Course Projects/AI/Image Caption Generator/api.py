@@ -1,8 +1,11 @@
+from statistics import mode
+from  flask import Flask 
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 from PIL import ImageTk, Image
 import numpy as np
+
 
 #load the trained model to classify sign
 from tensorflow.keras.models import load_model
@@ -30,12 +33,12 @@ def encode(image):
     vec = np.reshape(vec, (vec.shape[1]))
     return vec
 
-
 pickle_in = open("wordtoix.pkl", "rb")
 wordtoix = load(pickle_in)
 pickle_in = open("ixtoword.pkl", "rb")
 ixtoword = load(pickle_in)
 max_length = 74
+
 
 def greedy_search(pic):
     start = 'startseq'
@@ -109,15 +112,11 @@ label2=Label(top,background='#CDCDCD', font=('arial',15))
 label1=Label(top,background='#CDCDCD', font=('arial',15))
 label=Label(top,background='#CDCDCD', font=('arial',15))
 sign_image = Label(top)
-def classify(file_path):
-    enc = encode(file_path)
-    image = enc.reshape(1, 2048)
-    pred = greedy_search(image)
-    beam_3 = beam_search(image)
-    beam_5 = beam_search(image, 5)
-    print(pred)
-    print(beam_3)
-    print(beam_5)
-    
 
-classify('./images/test2.jpeg')
+app = Flask(__name__)
+
+@app.route('/', methods = ['POST'])
+def hello_world():
+    return 'Hello, World'
+
+app.run()

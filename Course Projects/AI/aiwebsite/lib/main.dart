@@ -2,6 +2,7 @@ import 'package:aiwebsite/Screens/aboutsUs.dart';
 import 'package:aiwebsite/Screens/homescreen.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   runApp(ImageColorization());
@@ -15,14 +16,14 @@ class ImageColorization extends StatefulWidget {
 class _ImageColorizationState extends State<ImageColorization> {
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
-      
       debugShowCheckedModeBanner: false,
       initialRoute: homeScreen.id,
       routes: {
         homeScreen.id: (context) => homeScreen(),
-        outputScreen.id:(context) => outputScreen(),
-        aboutUs.id:(context) => aboutUs(),
+        outputScreen.id: (context) => outputScreen(),
+        aboutUs.id: (context) => aboutUs(),
       },
     );
   }

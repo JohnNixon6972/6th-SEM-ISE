@@ -15,13 +15,17 @@ dependencies:
     sdk: flutter
 
 
-  
+  http: ^0.13.4
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
   hovering: ^1.0.4
   animated_text_kit: ^4.2.1
   flutter_glow: ^0.2.0
   avatar_glow: ^2.0.2
+  firebase_core: ^1.18.0
+  image_picker: ^0.8.3+3
+  permission_handler: ^8.1.4+2
+  network_to_file_image: ^4.0.1
 
 dev_dependencies:
   flutter_test:

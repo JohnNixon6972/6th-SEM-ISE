@@ -1,8 +1,9 @@
 import 'dart:typed_data';
-import 'package:image_picker_web/image_picker_web.dart';
+import 'dart:io';
+import 'package:aiwebsite/components/function.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:aiwebsite/constants.dart';
-import 'package:aiwebsite/main.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:hovering/hovering.dart";
 import 'package:easy_sidemenu/easy_sidemenu.dart';
@@ -10,7 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 
-late Image? inputedImage = null;
+late Uint8List uploadedImage;
+// late Image? inputedImage = null;
+late XFile? inputedImage = null;
 
 class homeScreen extends StatefulWidget {
   static const String id = 'homeScreen';
@@ -24,9 +27,16 @@ class homeScreen extends StatefulWidget {
 Image img = Image.asset('uploadImage.png');
 
 class _homeScreenState extends State<homeScreen> {
-  late Uint8List uploadedImage;
+  String url = 'http://127.0.0.1:5000';
+  var data;
+
   startFilePicker() async {
-    inputedImage = await ImagePickerWeb.getImageAsWidget();
+    final ImagePicker _picker = ImagePicker();
+    // inputedImage = await ImagePickerWeb.getImageAsWidget();
+    inputedImage = await _picker.pickImage(source: ImageSource.gallery);
+    // print(ImagePickerWeb.getImageInfo);
+    // inputedImage!.image
+    print(inputedImage?.path);
     setState(() {});
   }
 
@@ -35,7 +45,7 @@ class _homeScreenState extends State<homeScreen> {
     end: Alignment.topLeft,
     colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
   ).createShader(
-    Rect.fromPoints(Offset(0, 500), Offset(1000, 500)),
+    Rect.fromPoints(const Offset(0, 500), const Offset(1000, 500)),
   );
 
   @override
@@ -48,13 +58,13 @@ class _homeScreenState extends State<homeScreen> {
         onTap: () {
           Navigator.pushNamed(context, outputScreen.id);
         },
-        icon: Icon(Icons.people),
+        icon: const Icon(Icons.people),
       ),
       SideMenuItem(
         priority: 1,
         title: 'Home',
         onTap: () => {Navigator.pushNamed(context, outputScreen.id)},
-        icon: Icon(Icons.home),
+        icon: const Icon(Icons.home),
       ),
       SideMenuItem(
         priority: 2,
@@ -62,7 +72,7 @@ class _homeScreenState extends State<homeScreen> {
         onTap: () {
           Navigator.pushNamed(context, outputScreen.id);
         },
-        icon: Icon(Icons.exit_to_app),
+        icon: const Icon(Icons.exit_to_app),
       ),
     ];
     return Scaffold(
@@ -126,7 +136,7 @@ class _homeScreenState extends State<homeScreen> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: kColor4),
+                        border: Border.all(color: Colors.purpleAccent),
                       ),
                       height: MediaQuery.of(context).size.height - 60,
                       width: (MediaQuery.of(context).size.width) / 5,
@@ -137,7 +147,7 @@ class _homeScreenState extends State<homeScreen> {
                             "Menu",
                             glowColor: Colors.black,
                             style: GoogleFonts.cantataOne(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   // color: kColor2,
                                   fontSize: 30,
                                   fontWeight: FontWeight.w600,
@@ -161,19 +171,21 @@ class _homeScreenState extends State<homeScreen> {
                           selectedIconColor: Colors.white,
                           unselectedIconColor: Colors.black54,
                           // backgroundColor: kColor1,
-                          selectedTitleTextStyle: TextStyle(
+                          selectedTitleTextStyle: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
-                          unselectedTitleTextStyle:
-                              TextStyle(color: Colors.purpleAccent),
-                          iconSize: 25,
+                          unselectedTitleTextStyle: const TextStyle(
+                              color: Colors.purpleAccent,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                          iconSize: 30,
                         ),
                       ),
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: kColor4),
+                        border: Border.all(color: Colors.purpleAccent),
                       ),
                       height: MediaQuery.of(context).size.height,
                       width: (3 * MediaQuery.of(context).size.width) / 5,
@@ -190,7 +202,7 @@ class _homeScreenState extends State<homeScreen> {
                                 "Let's get started !",
                                 // glowColor: Colors.black,
                                 style: GoogleFonts.cantataOne(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                     // color: kColor2,
                                     color: Colors.indigoAccent,
                                     fontSize: 50,
@@ -203,9 +215,8 @@ class _homeScreenState extends State<homeScreen> {
                             const SizedBox(
                               height: 30,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 100.0),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 100.0),
                               child: Text(
                                 "Image Caption Generation:",
                                 style: TextStyle(
@@ -223,7 +234,7 @@ class _homeScreenState extends State<homeScreen> {
                               child: Text(
                                 "Image caption generator is a process of recognizing the context of an image and annotating it with relevant captions using deep learning, and computer vision.",
                                 style: GoogleFonts.cantataOne(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.deepPurpleAccent),
@@ -233,9 +244,8 @@ class _homeScreenState extends State<homeScreen> {
                             const SizedBox(
                               height: 20,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 100.0),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 100.0),
                               child: Text(
                                 "Image Colorization:",
                                 style: TextStyle(
@@ -253,7 +263,7 @@ class _homeScreenState extends State<homeScreen> {
                               child: Text(
                                 "Image colorization is one technique to add style to a photograph or apply a combination of styles. Additionally, image colorization can add color to photographs that were originally taken in black and white.",
                                 style: GoogleFonts.cantataOne(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                     // color: kColor2,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -286,6 +296,9 @@ class _homeScreenState extends State<homeScreen> {
                                   context: context,
                                 ),
                               ],
+                            ),
+                            const SizedBox(
+                              height: 80,
                             )
                           ],
                         ),
@@ -300,13 +313,13 @@ class _homeScreenState extends State<homeScreen> {
                           height: MediaQuery.of(context).size.height - 60,
                           width: (MediaQuery.of(context).size.width) / 5,
                           decoration: BoxDecoration(
-                            border: Border.all(color: kColor4),
+                            border: Border.all(color: Colors.purpleAccent),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SizedBox(
+                              Container(
                                 width: 250,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -346,9 +359,10 @@ class _homeScreenState extends State<homeScreen> {
                                     child: inputedImage == null
                                         ? Image.asset(
                                             'images/uploadImage.png',
+                                            fit: BoxFit.cover,
                                           )
-                                        : Image(
-                                            image: inputedImage!.image,
+                                        : Image.network(
+                                            inputedImage!.path,
                                             fit: BoxFit.cover,
                                           )),
                                 height: 3 *
@@ -358,7 +372,8 @@ class _homeScreenState extends State<homeScreen> {
                                     ((MediaQuery.of(context).size.width) / 4) /
                                     4,
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: kColor1),
+                                  border:
+                                      Border.all(color: Colors.purpleAccent),
                                 ),
                               ),
                               Padding(
@@ -367,6 +382,8 @@ class _homeScreenState extends State<homeScreen> {
                                   width: 150,
                                   child: ElevatedButton(
                                     onPressed: () async {
+                                      sendImage(inputedImage!.path, url);
+
                                       Navigator.pushNamed(
                                           context, outputScreen.id);
                                     },
@@ -442,7 +459,10 @@ class animatedImages extends StatelessWidget {
         child: Material(
           elevation: 15,
           borderRadius: BorderRadius.circular(15),
-          child: GlowContainer(
+          child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.purpleAccent, width: 3),
+                borderRadius: BorderRadius.circular(15)),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(

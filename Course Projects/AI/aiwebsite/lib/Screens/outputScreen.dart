@@ -1,12 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:html';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:aiwebsite/Screens/homescreen.dart';
 import 'package:aiwebsite/constants.dart';
-import 'package:aiwebsite/main.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,8 +105,8 @@ class _outputScreenState extends State<outputScreen> {
                               border: Border.all(color: kColor1),
                             ),
                             child: inputedImage != null
-                                ? Image(
-                                    image: inputedImage!.image,
+                                ? Image.network(
+                                    inputedImage!.path,
                                     fit: BoxFit.cover,
                                   )
                                 : Center(),
