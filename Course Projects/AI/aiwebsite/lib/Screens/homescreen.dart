@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'dart:html';
 import 'dart:typed_data';
-import 'dart:io';
-import 'package:aiwebsite/Screens/aboutsUs.dart';
 import 'package:aiwebsite/components/function.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
@@ -13,6 +10,7 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'aboutsUs.dart';
 
 import '../components/appBar.dart';
 
@@ -32,16 +30,22 @@ class homeScreen extends StatefulWidget {
 Image img = Image.asset('uploadImage.png');
 
 class _homeScreenState extends State<homeScreen> {
-  String url = 'http://127.0.0.1:5000';
+  String url = 'http://127.0.0.1:5000/api?filename=';
   var data;
 
   startFilePicker() async {
-    final ImagePicker _picker = ImagePicker();
-    // inputedImage = await ImagePickerWeb.getImageAsWidget();
-    inputedImage = await _picker.pickImage(source: ImageSource.gallery);
-    // print(ImagePickerWeb.getImageInfo);
-    // inputedImage!.image
-    print(inputedImage?.path);
+    try {
+      final ImagePicker _picker = ImagePicker();
+      // inputedImage = await ImagePickerWeb.getImageAsWidget();
+      inputedImage = await _picker.pickImage(source: ImageSource.gallery);
+      // print(ImagePickerWeb.getImageInfo);
+      // inputedImage!.image
+
+      print(inputedImage?.name);
+      url = url + inputedImage!.name.toString();
+    } catch (e) {
+      print(e);
+    }
     setState(() {});
   }
 

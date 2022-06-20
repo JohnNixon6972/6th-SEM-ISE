@@ -1,5 +1,5 @@
 from statistics import mode
-from  flask import Flask 
+from  flask import Flask, jsonify 
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
@@ -115,8 +115,12 @@ sign_image = Label(top)
 
 app = Flask(__name__)
 
-@app.route('/', methods = ['POST'])
+@app.route('/api', methods = ['POST','GET'])
 def hello_world():
-    return 'Hello, World'
+    data = {
+            "Modules" : 15,
+            "Subject" : "Data Structures and Algorithms",
+        }
+    return jsonify(data)
 
 app.run()
