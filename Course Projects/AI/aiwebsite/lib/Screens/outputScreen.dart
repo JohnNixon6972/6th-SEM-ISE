@@ -7,10 +7,13 @@ import 'package:aiwebsite/Screens/homescreen.dart';
 import 'package:aiwebsite/constants.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../components/function.dart';
 // import 'package:image_picker/image_picker.dart';
+
+import '../components/appBar.dart';
 
 class outputScreen extends StatefulWidget {
   static const String id = 'outputScreen';
@@ -45,29 +48,7 @@ class _outputScreenState extends State<outputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 15,
-        toolbarHeight: 50,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.topLeft,
-                colors: <Color>[kColor1, kColor4]),
-          ),
-        ),
-        title: Center(
-          child: Text(
-            "Image Colorization",
-            style: GoogleFonts.cantataOne(
-              textStyle: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-      ),
+      appBar: myAppBar(false),
       body: SafeArea(
         child: Stack(
           children: [
@@ -87,14 +68,14 @@ class _outputScreenState extends State<outputScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  GlowText(
                     "Results",
                     style: GoogleFonts.cantataOne(
                       textStyle: TextStyle(
-                        // color: kColor2,
+                        color: kColor3,
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
-                        foreground: Paint()..shader = linerGradient,
+                        // foreground: Paint()..shader = linerGradient,
                       ),
                     ),
                   ),
@@ -106,59 +87,67 @@ class _outputScreenState extends State<outputScreen> {
                         children: [
                           Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Text(
+                            child: GlowText(
                               "Orginal Image",
                               style: GoogleFonts.cantataOne(
                                 textStyle: TextStyle(
-                                  // color: kColor2,
-                                  fontSize: 20,
+                                  color: kColor1,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold,
-                                  foreground: Paint()..shader = linerGradient,
+                                  // foreground: Paint()..shader = linerGradient,
                                 ),
                               ),
                             ),
                           ),
-                          Container(
-                            height: ((MediaQuery.of(context).size.width)) / 3,
-                            width: ((MediaQuery.of(context).size.width)) / 3,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: kColor1),
+                          Material(
+                            elevation: 10,
+                            shadowColor: kColor4,
+                            child: Container(
+                              height: ((MediaQuery.of(context).size.width)) / 3,
+                              width: ((MediaQuery.of(context).size.width)) / 3,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: kColor1),
+                              ),
+                              child: inputedImage != null
+                                  ? Image.network(
+                                      inputedImage!.path,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Center(),
                             ),
-                            child: inputedImage != null
-                                ? Image.network(
-                                    inputedImage!.path,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Center(),
                           ),
                         ],
                       ),
                       const Icon(
                         Icons.arrow_forward,
-                        color: kColor2,
+                        color: kColor3,
                         size: 90,
                       ),
                       Column(
                         children: [
                           Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Text(
+                            child: GlowText(
                               "Coloured Image",
                               style: GoogleFonts.cantataOne(
                                 textStyle: TextStyle(
-                                  // color: kColor2,
-                                  fontSize: 20,
+                                  color: kColor1,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold,
-                                  foreground: Paint()..shader = linerGradient,
+                                  // foreground: Paint()..shader = linerGradient,
                                 ),
                               ),
                             ),
                           ),
-                          Container(
-                            height: ((MediaQuery.of(context).size.width)) / 3,
-                            width: ((MediaQuery.of(context).size.width)) / 3,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: kColor1),
+                          Material(
+                            elevation: 10,
+                            shadowColor: kColor4,
+                            child: Container(
+                              height: ((MediaQuery.of(context).size.width)) / 3,
+                              width: ((MediaQuery.of(context).size.width)) / 3,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: kColor1),
+                              ),
                             ),
                           ),
                         ],
@@ -168,20 +157,24 @@ class _outputScreenState extends State<outputScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: kColor1),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Generated Caption : $output",
-                        style: GoogleFonts.cantataOne(
-                          textStyle: TextStyle(
-                            // color: kColor2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            foreground: Paint()..shader = linerGradient,
+                  Material(
+                    elevation: 10,
+                    shadowColor: kColor4,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: kColor1),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Generated Caption : ",
+                          style: GoogleFonts.cantataOne(
+                            textStyle: TextStyle(
+                              color: kColor3,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              // foreground: Paint()..shader = linerGradient,
+                            ),
                           ),
                         ),
                       ),
@@ -190,20 +183,31 @@ class _outputScreenState extends State<outputScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      Navigator.pushNamed(context, homeScreen.id);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: kColor2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  SizedBox(
+                    width: 160,
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Navigator.pushNamed(context, homeScreen.id);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        alignment: Alignment.center,
+                        primary: kColor4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      'Refresh',
-                      style: GoogleFonts.cantataOne(
-                        textStyle: TextStyle(color: Colors.white, fontSize: 20),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GlowText(
+                            'Refresh',
+                            style: GoogleFonts.cantataOne(
+                              textStyle: const TextStyle(
+                                  color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
