@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
-
+import 'dart:convert';
+import 'dart:html';
 import 'package:aiwebsite/Screens/homescreen.dart';
 import 'package:aiwebsite/constants.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../components/function.dart';
 // import 'package:image_picker/image_picker.dart';
 
 class outputScreen extends StatefulWidget {
@@ -16,7 +19,24 @@ class outputScreen extends StatefulWidget {
   State<outputScreen> createState() => _outputScreenState();
 }
 
+var data;
+
 class _outputScreenState extends State<outputScreen> {
+  @override
+  void getOutput() async {
+    data = await fetchdata(url);
+    var decoded = jsonDecode(data);
+    setState(() {
+      output = decoded['output'];
+    });
+  }
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getOutput();
+  }
+
   final Shader linerGradient = const LinearGradient(
     colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
   ).createShader(
@@ -155,7 +175,7 @@ class _outputScreenState extends State<outputScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Generated Caption : ",
+                        "Generated Caption : $output",
                         style: GoogleFonts.cantataOne(
                           textStyle: TextStyle(
                             // color: kColor2,

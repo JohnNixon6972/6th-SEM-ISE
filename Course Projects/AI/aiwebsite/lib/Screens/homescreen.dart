@@ -1,6 +1,4 @@
-import 'dart:html';
 import 'dart:typed_data';
-import 'package:aiwebsite/components/function.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:aiwebsite/Screens/outputScreen.dart';
 import 'package:aiwebsite/constants.dart';
@@ -14,6 +12,7 @@ import 'package:flutter_glow/flutter_glow.dart';
 late Uint8List uploadedImage;
 // late Image? inputedImage = null;
 late XFile? inputedImage = null;
+String output = 'Thinking...';
 
 class homeScreen extends StatefulWidget {
   static const String id = 'homeScreen';
@@ -25,11 +24,9 @@ class homeScreen extends StatefulWidget {
 // List<XFile>? imageFileList = [];
 
 Image img = Image.asset('uploadImage.png');
+String url = 'http://127.0.0.1:5000/api?filename=';
 
 class _homeScreenState extends State<homeScreen> {
-  String url = 'http://127.0.0.1:5000/api?filename=';
-  var data;
-
   startFilePicker() async {
     try {
       final ImagePicker _picker = ImagePicker();
@@ -387,9 +384,7 @@ class _homeScreenState extends State<homeScreen> {
                                 child: SizedBox(
                                   width: 150,
                                   child: ElevatedButton(
-                                    onPressed: () async {
-                                      sendImage(inputedImage!.path, url);
-
+                                    onPressed: () {
                                       Navigator.pushNamed(
                                           context, outputScreen.id);
                                     },
