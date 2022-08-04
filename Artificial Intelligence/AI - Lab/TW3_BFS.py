@@ -33,13 +33,6 @@ class Graph:
  
  
 BFS_graph = Graph()
-# BFS_graph.addEdge(5, 3)
-# BFS_graph.addEdge(5, 7)
-# BFS_graph.addEdge(3, 2)
-# BFS_graph.addEdge(3, 4)
-# BFS_graph.addEdge(7, 8)
-# BFS_graph.addEdge(4, 8)
-
 
 BFS_graph.addEdge(0,1)
 BFS_graph.addEdge(0,3)
@@ -54,13 +47,5 @@ BFS_graph.addEdge(2,4)
 BFS_graph.addEdge(4,5)
 BFS_graph.addEdge(4,7)
 BFS_graph.addEdge(7,8)
-
-
-
-# BFS_graph.addEdge(5,10)
-# BFS_graph.addEdge(5,11)
-# BFS_graph.addEdge(3,6)
-# BFS_graph.addEdge(3,7)
-# BFS_graph.addEdge(5,6)
  
 BFS_graph.BFS(0, 9)
